@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f8fc" />
+    <title>Flowboard — Work, beautifully organized</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="Flowboard home"><span class="brand-mark">F</span><span>flowboard</span></a>
+        <nav class="nav-list" aria-label="Main navigation">
+          <a href="#" class="nav-item active"><span class="nav-icon">▦</span>My boards</a>
+          <a href="#" class="nav-item"><span class="nav-icon">✓</span>My tasks <span class="count" id="taskCount">0</span></a>
+        </nav>
+        <div class="sidebar-section">
+          <div class="sidebar-heading"><span>YOUR BOARDS</span><button class="icon-btn" id="newBoardBtn" aria-label="Create board">+</button></div>
+          <div class="board-nav" id="boardNav"></div>
+        </div>
+        <div class="sidebar-footer"><div class="help-card"><span class="help-icon">✦</span><div><strong>Make space for focus</strong><p>Drag a card to move work forward.</p></div></div><button class="profile" id="profileBtn"><span class="avatar avatar-you">Y</span><span><strong>You</strong><small>Personal workspace</small></span><span class="dots">•••</span></button></div>
+      </aside>
+      <main class="main-content">
+        <header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button><div class="crumbs"><span id="workspaceName">Personal workspace</span><span>/</span><strong id="boardTitle">Product launch</strong></div><div class="top-actions"><button class="icon-btn" id="searchBtn" aria-label="Search cards">⌕</button><button class="icon-btn" aria-label="Notifications">♧</button><button class="avatar avatar-you" id="topProfile">Y</button></div></header>
+        <section class="board-header"><div><p class="eyebrow">PROJECT BOARD</p><h1 id="boardHeading">Product launch</h1><p class="board-description" id="boardDescription">Everything needed to take Flowboard from a bright idea to launch day.</p></div><div class="board-controls"><div class="team-stack" id="teamStack"></div><button class="outline-btn" id="shareBtn">Share</button><button class="primary-btn" id="openCreateCard">+ Add task</button></div></section>
+        <section class="board-canvas" id="boardCanvas" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <dialog id="cardDialog" class="modal"><form method="dialog" id="cardForm"><div class="modal-head"><div><p class="eyebrow" id="dialogEyebrow">NEW TASK</p><h2 id="dialogTitle">Add a task</h2></div><button class="icon-btn close-btn" value="cancel" aria-label="Close">×</button></div><input type="hidden" id="cardId" /><input type="hidden" id="cardColumnId" /><label>Task name<input required id="titleInput" placeholder="What needs to be done?" maxlength="90" /></label><label>Description<textarea id="descriptionInput" placeholder="Add a little context…" rows="4" maxlength="500"></textarea></label><div class="two-field"><label>Assignee<select id="assigneeInput"></select></label><label>Due date<input type="date" id="dueInput" /></label></div><div class="two-field"><label>Label<select id="labelInput"><option value="">No label</option><option value="violet">Design</option><option value="blue">Product</option><option value="coral">Marketing</option><option value="gold">Research</option></select></label><label>Priority<select id="priorityInput"><option value="normal">Normal</option><option value="high">High</option><option value="low">Low</option></select></label></div><div class="modal-footer"><button type="button" class="danger-btn" id="deleteCardBtn">Delete task</button><span class="footer-spacer"></span><button value="cancel" class="outline-btn">Cancel</button><button class="primary-btn" id="saveCardBtn" value="default">Save task</button></div></form></dialog>
+    <dialog id="boardDialog" class="modal small-modal"><form method="dialog" id="boardForm"><div class="modal-head"><div><p class="eyebrow">NEW BOARD</p><h2>Create a board</h2></div><button class="icon-btn close-btn" value="cancel" aria-label="Close">×</button></div><label>Board name<input required id="newBoardName" placeholder="e.g. Website refresh" maxlength="60" /></label><label>Description<textarea id="newBoardDescription" placeholder="What is this board for?" rows="3" maxlength="180"></textarea></label><div class="modal-footer"><span class="footer-spacer"></span><button value="cancel" class="outline-btn">Cancel</button><button class="primary-btn" value="default">Create board</button></div></form></dialog>
+    <dialog id="searchDialog" class="modal small-modal"><form method="dialog"><div class="modal-head"><div><p class="eyebrow">QUICK FIND</p><h2>Search your tasks</h2></div><button class="icon-btn close-btn" value="cancel" aria-label="Close">×</button></div><label>Search<input autofocus id="searchInput" placeholder="Type to search…" /></label><div id="searchResults" class="search-results"></div></form></dialog>
+    <div id="toast" class="toast" role="status"></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
